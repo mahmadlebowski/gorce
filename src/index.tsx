@@ -1,80 +1,95 @@
 import * as React from "react";
 import { render } from "react-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./styles.css";
 
 class App extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            quote: "Le discours progressiste"
+            quote: "Le discours progressiste",
+            answer: "Vous êtes bête contrairement à moi\n(Xavier Gorce) qui suit intelligent"
         };
     }
 
     public componentDidMount() {
-        this.renderCanvas(this.state.quote);
+        this.renderCanvas(this.state.quote, this.state.answer);
     }
 
     public componentDidUpdate() {
-        this.renderCanvas(this.state.quote);
+        this.renderCanvas(this.state.quote, this.state.answer);
     }
 
-    public renderCanvas(text: string) {
+    public renderCanvas(quote: string, answer: string) {
         var canvas = document.getElementById("canvas") as HTMLCanvasElement;
         if (canvas === null) {
             return;
         }
-        var context = canvas.getContext("2d")!;
-
-
-        // Draw Image function
-        var img = new Image();
+        let context = canvas.getContext("2d")!;
+        let img = new Image();
         img.src = process.env.PUBLIC_URL + "/background.png";
-        console.log(img);
         img.onload = () => {
-            console.log(img);
-            var lineHeight = 18;
+            let lineHeight = 18;
             context.drawImage(img, 0, 0);
             context.lineWidth = 1;
             context.fillStyle = "#000000";
             context.font = lineHeight + "px Indie Flower";
             context.textAlign = "center";
-            var x = 150;
-            var y = 40;
-            var lines = text.split("\n");
-            for (var i = 0; i < lines.length; i += 1) {
+            let x = 150;
+            let y = 40;
+            let lines = quote.split("\n");
+            for (let i = 0; i < lines.length; i += 1) {
                 context.fillText(lines[i], x, y + i * lineHeight);
             }
-            context.fillText("Vous êtes bête contrairement à moi", 420, 50);
-            context.fillText(
-                "(Xavier Gorce) qui suit intelligent",
-                420,
-                50 + lineHeight
-            );
+            x = 420;
+            y = 50;
+            lines = answer.split("\n");
+            for (let i = 0; i < lines.length; i += 1) {
+                context.fillText(lines[i], x, y + i * lineHeight);
+            }
         };
     }
 
-    public handleChange(event: any) {
+    public handleQuoteChange(event: any) {
         this.setState({
             quote: event.target.value
         });
     }
 
+    public handleAnswerChange(event: any) {
+        this.setState({
+            answer: event.target.value
+        });
+    }
+
     public render() {
         return (
-            <div className="App">
-                <textarea
-                    id="text"
-                    className="flex-item"
-                    value={this.state.quote}
-                    onChange={(event) => this.handleChange(event)}
-                ></textarea>
-                <div className="flex-container">
-                    <canvas
-                        className="flex-item"
-                        id="canvas"
-                        width="560"
-                        height="287"
-                    ></canvas>
+            <div className="container">
+                <div className="row justify-content-center mt-5">
+                    <div className="col-4">
+                        <textarea
+                            className="form-control"
+                            value={this.state.quote}
+                            onChange={(event) => this.handleQuoteChange(event)}
+                        ></textarea>
+                    </div>
+                    <div className="col-4">
+                        <textarea
+                            className="form-control"
+                            value={this.state.answer}
+                            onChange={(event) => this.handleAnswerChange(event)}
+                        ></textarea>
+                    </div>
+                </div>
+                <div className="row justify-content-center mt-3">
+                    <div className="col-12 d-flex justify-content-center">
+                        <canvas
+                            className="img-fluid"
+                            id="canvas"
+                            width="560"
+                            height="287"
+                        ></canvas>
+                    </div>
                 </div>
             </div>
         );
