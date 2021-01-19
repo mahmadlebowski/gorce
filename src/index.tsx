@@ -33,7 +33,7 @@ class App extends React.Component<any, any> {
             context.drawImage(img, 0, 0);
             context.lineWidth = 1;
             context.fillStyle = "#000000";
-            context.font = lineHeight + "px Indie Flower";
+            context.font = lineHeight + "px 'Indie Flower'";
             context.textAlign = "center";
             let x = 150;
             let y = 40;
@@ -52,8 +52,8 @@ class App extends React.Component<any, any> {
 
     public downloadCanvas() {
         var link = document.createElement('a');
-        link.download = 'filename.png';
-        link.href = (document.getElementById('canvas') as HTMLCanvasElement).toDataURL()
+        link.download = 'gorce.jpeg';
+        link.href = (document.getElementById('canvas') as HTMLCanvasElement).toDataURL('image/jpeg')
         link.click();
     }
 
@@ -73,14 +73,14 @@ class App extends React.Component<any, any> {
         return (
             <div className="container p-3">
                 <div className="row justify-content-center mt-5">
-                    <div className="col-4">
+                    <div className="col-sm-12 col-md-4 mb-1">
                         <textarea
                             className="form-control"
                             value={this.state.quote}
                             onChange={(event) => this.handleQuoteChange(event)}
                         ></textarea>
                     </div>
-                    <div className="col-4">
+                    <div className="col-sm-12 col-md-4 mb-1">
                         <textarea
                             className="form-control"
                             value={this.state.answer}
@@ -96,12 +96,6 @@ class App extends React.Component<any, any> {
                             width="560"
                             height="287"
                         ></canvas>
-                    </div>
-
-                </div>
-                <div className="row justify-content-end mt-3">
-                    <div className="col-4">
-                        <button type="button" onClick={() => this.downloadCanvas()} className="btn btn-primary">Télécharger</button>
                     </div>
                 </div>
             </div>
