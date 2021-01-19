@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c288f1350fc7a623a4076626b5f59d18",
+    "revision": "9dd08715006e40be3d9ab1e54e121b49",
     "url": "/gorce/index.html"
   },
   {
-    "revision": "a699118576e81c9c9670",
+    "revision": "9a1fec9ebc17104c3b8c",
     "url": "/gorce/static/css/main.b5766442.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gorce/static/js/2.0de065b6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a699118576e81c9c9670",
-    "url": "/gorce/static/js/main.521bf461.chunk.js"
+    "revision": "9a1fec9ebc17104c3b8c",
+    "url": "/gorce/static/js/main.bc01c9ef.chunk.js"
   },
   {
     "revision": "52f01001a3e89436c445",
