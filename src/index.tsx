@@ -21,11 +21,11 @@ class App extends React.Component<any, any> {
     }
 
     public renderCanvas(quote: string, answer: string) {
-        var canvas = document.getElementById("canvas") as HTMLCanvasElement;
+        var canvas = document.getElementById('canvas') as HTMLCanvasElement;
         if (canvas === null) {
             return;
         }
-        let context = canvas.getContext("2d")!;
+        let context = canvas.getContext('2d')!;
         let img = new Image();
         img.src = process.env.PUBLIC_URL + "/background.png";
         img.onload = () => {
@@ -50,6 +50,13 @@ class App extends React.Component<any, any> {
         };
     }
 
+    public downloadCanvas() {
+        var link = document.createElement('a');
+        link.download = 'filename.png';
+        link.href = (document.getElementById('canvas') as HTMLCanvasElement).toDataURL()
+        link.click();
+    }
+
     public handleQuoteChange(event: any) {
         this.setState({
             quote: event.target.value
@@ -64,7 +71,7 @@ class App extends React.Component<any, any> {
 
     public render() {
         return (
-            <div className="container">
+            <div className="container p-3">
                 <div className="row justify-content-center mt-5">
                     <div className="col-4">
                         <textarea
@@ -89,6 +96,12 @@ class App extends React.Component<any, any> {
                             width="560"
                             height="287"
                         ></canvas>
+                    </div>
+
+                </div>
+                <div className="row justify-content-end mt-3">
+                    <div className="col-4">
+                        <button type="button" onClick={() => this.downloadCanvas()} className="btn btn-primary">Télécharger</button>
                     </div>
                 </div>
             </div>
